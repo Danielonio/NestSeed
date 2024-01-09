@@ -3,6 +3,8 @@ import { AppModule } from './app.module';
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 import { ErrorFilter } from './shared/infraestructure/filter/error.filter';
 import { CustomLogger } from './shared/infraestructure/logging/custom.logger';
+import { ContextService } from './shared/infraestructure/logging/context.service';
+import * as ContextStore from 'request-context';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule, {
@@ -18,6 +20,9 @@ async function bootstrap() {
     .build();
   const document = SwaggerModule.createDocument(app, config);
   SwaggerModule.setup('api', app, document);
+
+  app.use(ContextStore.middleware('request'));
+  app.use(ContextService.middleware);
 
   await app.listen(3000);
 }

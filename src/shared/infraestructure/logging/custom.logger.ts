@@ -1,19 +1,25 @@
 import { ConsoleLogger } from '@nestjs/common';
+import { ContextService } from './context.service';
 
 export class CustomLogger extends ConsoleLogger {
   log(message: string) {
-    super.log('📢 ' + message);
+    super.log(`📢 ${CustomLogger.getRequestId()}` + message);
   }
 
   error(message: string) {
-    super.error('❌ ' + message);
+    super.error(`❌ ${CustomLogger.getRequestId()}` + message);
   }
 
   warn(message: string) {
-    super.warn('⚠️ ' + message);
+    super.warn(`⚠️ ${CustomLogger.getRequestId()}` + message);
   }
 
   debug(message: string) {
-    super.debug('🐞 ' + message);
+    super.debug(`🐞 ${CustomLogger.getRequestId()}` + message);
+  }
+
+  private static getRequestId(): string {
+    const id = ContextService.get(ContextService.KEYS.REQUEST_ID);
+    return id ? `[${id}]` : '';
   }
 }
