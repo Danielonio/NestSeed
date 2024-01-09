@@ -7,6 +7,6 @@ export class GetMonsterController {
 
   @Get('monster')
   getMonster(@Query('name') name: string) {
-    return this.getMonsterService.getMonster(name);
+    return this.getMonsterService.getMonsterByIndex(name);
   }
 }

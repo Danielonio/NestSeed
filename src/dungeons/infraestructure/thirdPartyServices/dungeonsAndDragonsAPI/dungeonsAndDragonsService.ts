@@ -1,15 +1,16 @@
 import { Injectable } from '@nestjs/common';
 import { DungeonsAndDragonsHttpClient } from './dungeonsAndDragonsClient';
 import { DungeonsAndDragonsMonster } from './interfaces/monster.interface';
+import { MonsterRepository } from '../../../domain/repositories/monster.repository';
 
 @Injectable()
-export class DungeonsAndDragonsService {
+export class DungeonsAndDragonsMonsterRepository implements MonsterRepository {
   private dungeonsAndDragonsHttpClient: DungeonsAndDragonsHttpClient;
   constructor() {
     this.dungeonsAndDragonsHttpClient = new DungeonsAndDragonsHttpClient();
   }
 
-  async getMonsterDataByIndex(index: string): Promise<Monster> {
+  async getMonsterByIndex(index: string): Promise<Monster> {
     const monsterData = (await this.dungeonsAndDragonsHttpClient.get(
       `monsters/${index}`,
     )) as DungeonsAndDragonsMonster;
