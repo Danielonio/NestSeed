@@ -7,6 +7,6 @@ export class GetMonsterService {
     private readonly dungeonsAndDragonsService: DungeonsAndDragonsService,
   ) {}
   getMonster(name) {
-    return this.dungeonsAndDragonsService.getMonsterData(name);
+    return this.dungeonsAndDragonsService.getMonsterDataByIndex(name);
   }
 }

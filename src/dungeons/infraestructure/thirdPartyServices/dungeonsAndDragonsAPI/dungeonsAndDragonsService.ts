@@ -1,5 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { DungeonsAndDragonsHttpClient } from './dungeonsAndDragonsClient';
+import { DungeonsAndDragonsMonster } from './interfaces/monster.interface';
 
 @Injectable()
 export class DungeonsAndDragonsService {
@@ -8,10 +9,15 @@ export class DungeonsAndDragonsService {
     this.dungeonsAndDragonsHttpClient = new DungeonsAndDragonsHttpClient();
   }
 
-  async getMonsterData(index: string) {
-    const monsterData = await this.dungeonsAndDragonsHttpClient.get(
+  async getMonsterDataByIndex(index: string): Promise<Monster> {
+    const monsterData = (await this.dungeonsAndDragonsHttpClient.get(
       `monsters/${index}`,
-    );
-    return monsterData;
+    )) as DungeonsAndDragonsMonster;
+
+    return {
+      name: monsterData.name,
+      index: monsterData.index,
+      hitPoints: monsterData.hit_points,
+    };
   }
 }
