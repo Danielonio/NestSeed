@@ -9,7 +9,7 @@ import { CustomLogger } from '../logging/custom.logger';
 
 @Catch()
 export class ErrorFilter implements ExceptionFilter {
-  private logger = new CustomLogger();
+  private logger = new CustomLogger(ErrorFilter.name);
   catch(exception, host: ArgumentsHost) {
     const ctx = host.switchToHttp();
     const response = ctx.getResponse<Response>();
