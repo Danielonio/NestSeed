@@ -1,7 +1,7 @@
 import { HttpStatus, Injectable, NotFoundException } from '@nestjs/common';
 import { HttpClient } from '../../../../shared/infraestructure/http/httpClient';
-import { DungeonsAndDragonsMonster } from './interfaces/monster.interface';
 import { MonsterRepository } from '../../../domain/repositories/monster.repository';
+import { MonsterAdapter } from './adapters/monster.adapter';
 
 @Injectable()
 export class DungeonsAndDragonsMonsterRepository implements MonsterRepository {
@@ -20,12 +20,9 @@ export class DungeonsAndDragonsMonsterRepository implements MonsterRepository {
     if (monsterRequest.status !== HttpStatus.OK) {
       throw new NotFoundException('Monster not found');
     }
-    const monsterData = monsterRequest.data as DungeonsAndDragonsMonster;
-
-    return {
-      name: monsterData.name,
-      index: monsterData.index,
-      hitPoints: monsterData.hit_points,
-    };
+    const monster: Monster = MonsterAdapter.mapServiceResponse(
+      monsterRequest.data,
+    );
+    return monster;
   }
 }
