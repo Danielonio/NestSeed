@@ -1,5 +1,5 @@
 import { Controller, Get, HttpStatus, Query } from '@nestjs/common';
-import { GetMonsterService } from '../../application/get.monster.service';
+import { GetMonsterService } from '../../application/use-cases/get.monster.service';
 import { ApiOkResponse, ApiOperation, ApiTags } from '@nestjs/swagger';
 import { MonsterDto } from '../../application/dtos/monster.dto';
 import { SUCCESSFUL_RESPONSE } from '../../../shared/infraestructure/constants/constants';

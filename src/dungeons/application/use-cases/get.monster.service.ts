@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
-import { MonsterRepository } from '../domain/repositories/monster.repository';
-import { MonsterDto } from './dtos/monster.dto';
-import { MonsterIndexDto } from './dtos/monster.index.dto';
+import { MonsterRepository } from '../../domain/repositories/monster.repository';
+import { MonsterDto } from '../dtos/monster.dto';
+import { MonsterIndexDto } from '../dtos/monster.index.dto';
 
 @Injectable()
 export class GetMonsterService {
