@@ -1,4 +1,4 @@
-import { Injectable, NestMiddleware } from '@nestjs/common';
+import { Body, Injectable, NestMiddleware } from '@nestjs/common';
 import { Request, Response, NextFunction } from 'express';
 import { CustomLogger } from '../logging/custom.logger';
 
@@ -6,8 +6,9 @@ import { CustomLogger } from '../logging/custom.logger';
 export class LoggerMiddleware implements NestMiddleware {
   private logger = new CustomLogger(`HTTP`);
   use(req: Request, res: Response, next: NextFunction) {
+    const bodyLog = req.body ? `Body: ${JSON.stringify(req.body)} ` : undefined;
     this.logger.debug(
-      `[REQUEST] Method: ${req.method} Url: ${req.originalUrl}`,
+      `[REQUEST] Method: ${req.method} Url: ${req.originalUrl} ${bodyLog}`,
     );
 
     res.on('close', () => {

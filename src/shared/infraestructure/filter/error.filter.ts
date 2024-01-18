@@ -3,6 +3,7 @@ import {
   Catch,
   ArgumentsHost,
   HttpException,
+  UnprocessableEntityException,
 } from '@nestjs/common';
 import { Request, Response } from 'express';
 import { CustomLogger } from '../logging/custom.logger';
@@ -27,10 +28,16 @@ export class ErrorFilter implements ExceptionFilter {
       requestId: ErrorFilter.getRequestId(),
       timestamp: new Date().toISOString(),
       statusCode: 500,
+      message: undefined,
     };
+
     if (exception instanceof HttpException) {
       status = exception.getStatus();
       res.statusCode = status;
+
+      if (exception instanceof UnprocessableEntityException) {
+        res.message = exception.getResponse()['message'];
+      }
     }
 
     const logInfo = {

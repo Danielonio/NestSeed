@@ -5,6 +5,7 @@ import { ErrorFilter } from './shared/infraestructure/filter/error.filter';
 import { CustomLogger } from './shared/infraestructure/logging/custom.logger';
 import { ContextService } from './shared/infraestructure/logging/context.service';
 import * as ContextStore from 'request-context';
+import { inputValidationPipe } from './shared/infraestructure/pipes/input.validation.pipe';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule, {
@@ -12,6 +13,7 @@ async function bootstrap() {
   });
 
   app.useGlobalFilters(new ErrorFilter());
+  app.useGlobalPipes(inputValidationPipe);
 
   const config = new DocumentBuilder()
     .setTitle('Nest Seed')
