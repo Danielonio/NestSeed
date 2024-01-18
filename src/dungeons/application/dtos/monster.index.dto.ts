@@ -1,6 +1,6 @@
-import { IsEmail, IsString } from 'class-validator';
+import { IsLowercase } from 'class-validator';
 
 export class MonsterIndexDto {
-  @IsString()
+  @IsLowercase()
   index: string;
 }

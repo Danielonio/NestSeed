@@ -23,7 +23,6 @@ export class ErrorFilter implements ExceptionFilter {
     const request = ctx.getRequest<Request>();
     const response = ctx.getResponse<Response>();
 
-    let status = 500;
     let res = {
       requestId: ErrorFilter.getRequestId(),
       timestamp: new Date().toISOString(),
@@ -32,8 +31,7 @@ export class ErrorFilter implements ExceptionFilter {
     };
 
     if (exception instanceof HttpException) {
-      status = exception.getStatus();
-      res.statusCode = status;
+      res.statusCode = exception.getStatus();
 
       if (exception instanceof UnprocessableEntityException) {
         res.message = exception.getResponse()['message'];
@@ -43,12 +41,13 @@ export class ErrorFilter implements ExceptionFilter {
     const logInfo = {
       method: request.method,
       path: request.url,
-      message: exception.message,
-      responseStatusCode: status,
+      exceptionMessage: exception.message,
+      responseMessaege: res.message,
+      responseStatusCode: res.statusCode,
       stack: exception.stack,
     };
 
     this.logger.error(JSON.stringify(logInfo));
-    response.status(status).json(res);
+    response.status(res.statusCode).json(res);
   }
 }
