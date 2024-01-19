@@ -20,7 +20,7 @@ export class GetMonsterListController {
   })
   getMonster(
     @Query() paginationOptions: PaginationOptionsDto,
-  ): Promise<PageObjectDto<String[]>> {
+  ): Promise<PageObjectDto<String>> {
     return this.getMonsterListService.getMonsterList(paginationOptions);
   }
 }

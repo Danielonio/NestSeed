@@ -13,25 +13,8 @@ export class GetMonsterListService {
 
   async getMonsterList(
     paginationOptions: PaginationOptionsDto,
-  ): Promise<PageObjectDto<String[]>> {
+  ): Promise<PageObjectDto<String>> {
     const monsterList: String[] = await this.monsterRepository.getMonsterList();
-
-    const pageMetadataDtoParameters: PageMetadataDtoParameters = {
-      paginationOptions,
-      itemCount: monsterList.length,
-    };
-    const { pageNumber, pageSize } = paginationOptions;
-
-    const monsterListPage = monsterList.slice(
-      (pageNumber - 1) * pageSize,
-      pageNumber * pageSize,
-    );
-
-    const monsterListPageAndMetadata = new PageObjectDto(
-      monsterListPage,
-      new PageMetadataDto(pageMetadataDtoParameters),
-    );
-
-    return monsterListPageAndMetadata;
+    return new PageObjectDto(monsterList, paginationOptions);
   }
 }
