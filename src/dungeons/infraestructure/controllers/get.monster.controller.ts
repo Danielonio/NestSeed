@@ -1,4 +1,4 @@
-import { Controller, Get, HttpStatus, Query } from '@nestjs/common';
+import { Controller, Get, HttpStatus, Param, Query } from '@nestjs/common';
 import { GetMonsterService } from '../../application/use-cases/get.monster.service';
 import { ApiOkResponse, ApiOperation, ApiTags } from '@nestjs/swagger';
 import { MonsterDto } from '../../application/dtos/monster.dto';
@@ -10,14 +10,14 @@ import { MonsterIndexDto } from '../../application/dtos/monster.index.dto';
 export class GetMonsterController {
   constructor(private readonly getMonsterService: GetMonsterService) {}
 
-  @Get('monster')
+  @Get('monster/:index')
   @ApiOperation({ summary: 'Get monster data from monster index' })
   @ApiOkResponse({
     description: SUCCESSFUL_RESPONSE,
     status: HttpStatus.OK,
     type: MonsterDto,
   })
-  getMonster(@Query() input: MonsterIndexDto): Promise<MonsterDto> {
+  getMonster(@Param() input: MonsterIndexDto): Promise<MonsterDto> {
     return this.getMonsterService.getMonsterByIndex(input);
   }
 }

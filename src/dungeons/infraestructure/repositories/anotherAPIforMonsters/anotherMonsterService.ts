@@ -10,4 +10,8 @@ export class AnotherMonsterRepository implements MonsterRepository {
       hitPoints: 100,
     };
   }
+
+  async getMonsterList(): Promise<String[]> {
+    return ['Monster1', 'Monster2', 'Monster3'];
+  }
 }

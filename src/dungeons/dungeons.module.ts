@@ -3,11 +3,14 @@ import { GetMonsterController } from './infraestructure/controllers/get.monster.
 import { GetMonsterService } from './application/use-cases/get.monster.service';
 import { MonsterRepository } from './domain/repositories/monster.repository';
 import { DungeonsAndDragonsMonsterRepository } from './infraestructure/repositories/dungeonsAndDragonsAPI/dungeons.and.dragons.monster.repository';
+import { GetMonsterListController } from './infraestructure/controllers/get.monster.list.controller';
+import { GetMonsterListService } from './application/use-cases/get.monster.list.service';
 @Module({
   imports: [],
-  controllers: [GetMonsterController],
+  controllers: [GetMonsterController, GetMonsterListController],
   providers: [
     GetMonsterService,
+    GetMonsterListService,
     {
       provide: MonsterRepository,
       useClass: DungeonsAndDragonsMonsterRepository,
