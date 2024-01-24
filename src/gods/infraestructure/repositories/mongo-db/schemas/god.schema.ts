@@ -1,10 +1,10 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { HydratedDocument } from 'mongoose';
 
-export type GodDocument = HydratedDocument<God>;
+export type GodDocument = HydratedDocument<GodS>;
 
 @Schema()
-export class God {
+export class GodS {
   @Prop()
   name: string;
 
@@ -12,10 +12,10 @@ export class God {
   culture: string;
 
   @Prop()
-  powers: string;
+  powers: string[];
 }
 
-export const GodSchema = SchemaFactory.createForClass(God);
+export const GodSchema = SchemaFactory.createForClass(GodS);
 /*
 Alternatively, if you prefer not using decorators, you can define a schema manually.
 For example:

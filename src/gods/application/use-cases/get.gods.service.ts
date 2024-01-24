@@ -1,13 +1,13 @@
 import { Injectable } from '@nestjs/common';
-import { God } from '../../infraestructure/mongo-db/schemas/god.chema';
-import { InjectModel } from '@nestjs/mongoose';
-import { Model } from 'mongoose';
+import { GodRepository } from '../../domain/repositories/god.repository';
+import { God } from '../../domain/entities/god';
 
 @Injectable()
 export class GetGodsService {
-  constructor(@InjectModel(God.name) private godModel: Model<God>) {}
+  constructor(private readonly godRepository: GodRepository) {}
 
-  async getGodByIndex() {
-    return this.godModel.find().exec();
+  async getGods(): Promise<God[]> {
+    const createdGod = this.godRepository.getGods();
+    return createdGod;
   }
 }

@@ -15,6 +15,6 @@ export class GetGodController {
     status: HttpStatus.OK,
   })
   getMonster() {
-    return this.getGodService.getGodByIndex();
+    return this.getGodService.getGods();
   }
 }
