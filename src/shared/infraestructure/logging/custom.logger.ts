@@ -2,6 +2,7 @@ import { ConsoleLogger } from '@nestjs/common';
 import { ContextService } from './context.service';
 
 export class CustomLogger extends ConsoleLogger {
+  //TODO:  receive objects and log them as strings
   log(message: string) {
     super.log(`📢 ${CustomLogger.getRequestId()}` + message);
   }
