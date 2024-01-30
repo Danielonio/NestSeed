@@ -11,9 +11,7 @@ import { PaginationOptionsDto } from '../../../shared/application/dto/pagination
 export class GetMonsterListService {
   constructor(private readonly monsterRepository: MonsterRepository) {}
 
-  async getMonsterList(
-    paginationOptions: PaginationOptionsDto,
-  ): Promise<PageObjectDto<String>> {
+  async execute(paginationOptions: PaginationOptionsDto): Promise<PageObjectDto<String>> {
     const monsterList: String[] = await this.monsterRepository.getMonsterList();
     return new PageObjectDto(monsterList, paginationOptions);
   }

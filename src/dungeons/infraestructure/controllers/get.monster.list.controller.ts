@@ -21,6 +21,6 @@ export class GetMonsterListController {
   getMonster(
     @Query() paginationOptions: PaginationOptionsDto,
   ): Promise<PageObjectDto<String>> {
-    return this.getMonsterListService.getMonsterList(paginationOptions);
+    return this.getMonsterListService.execute(paginationOptions);
   }
 }

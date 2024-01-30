@@ -2,12 +2,12 @@ import { Body, Controller, Get, HttpStatus, Param, Post, Query } from '@nestjs/c
 import { ApiOkResponse, ApiOperation, ApiTags } from '@nestjs/swagger';
 import { SUCCESSFUL_RESPONSE } from '../../../shared/infraestructure/constants/constants';
 import { CreateGodDto } from '../../application/dtos/create.god.dto';
-import { CreateGodService } from '../../application/use-cases/save.god.service';
+import { SaveGodService } from '../../application/use-cases/save.god.service';
 
 @Controller('gods')
 @ApiTags('Pantheon')
 export class CreateGodController {
-  constructor(private readonly createGodService: CreateGodService) {}
+  constructor(private readonly createGodService: SaveGodService) {}
 
   @Post('pantheon')
   @ApiOperation({ summary: 'Create god' })
@@ -16,6 +16,6 @@ export class CreateGodController {
     status: HttpStatus.OK,
   })
   getMonster(@Body() monsterData: CreateGodDto) {
-    return this.createGodService.createGod(monsterData);
+    return this.createGodService.execute(monsterData);
   }
 }

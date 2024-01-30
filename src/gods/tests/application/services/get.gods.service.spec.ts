@@ -38,7 +38,7 @@ describe('GetGodsService', () => {
     jest.spyOn(godRepository, 'getGods').mockResolvedValue(godsData);
 
     // Act
-    const result = await getGodsService.getGods();
+    const result = await getGodsService.execute();
 
     // Assert
     expect(result).toEqual({ godsData: 'hola' });

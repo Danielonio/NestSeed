@@ -18,6 +18,6 @@ export class GetMonsterController {
     type: MonsterDto,
   })
   getMonster(@Param() input: MonsterIndexDto): Promise<MonsterDto> {
-    return this.getMonsterService.getMonsterByIndex(input);
+    return this.getMonsterService.execute(input);
   }
 }

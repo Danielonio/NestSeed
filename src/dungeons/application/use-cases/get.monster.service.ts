@@ -7,10 +7,8 @@ import { MonsterIndexDto } from '../dtos/monster.index.dto';
 export class GetMonsterService {
   constructor(private readonly monsterRepository: MonsterRepository) {}
 
-  async getMonsterByIndex(input: MonsterIndexDto): Promise<MonsterDto> {
-    const monster: Monster = await this.monsterRepository.getMonsterByIndex(
-      input.index,
-    );
+  async execute(input: MonsterIndexDto): Promise<MonsterDto> {
+    const monster: Monster = await this.monsterRepository.getMonsterByIndex(input.index);
     return MonsterDto.entityToDto(monster);
   }
 }

@@ -7,7 +7,7 @@ import { God } from '../../domain/entities/god';
 export class SaveGodService {
   constructor(private readonly godRepository: GodRepository) {}
 
-  async createGod(godData: CreateGodDto): Promise<God> {
+  async execute(godData: CreateGodDto): Promise<God> {
     const { name, culture, powers } = godData;
     const god = new God(undefined, name, culture, powers);
     const createdGod = this.godRepository.saveGod(god);
