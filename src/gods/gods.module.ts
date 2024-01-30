@@ -7,7 +7,7 @@ import {
 import { GetGodController } from './infraestructure/controllers/get.god.controller';
 import { GetGodsService } from './application/use-cases/get.gods.service';
 import { CreateGodController } from './infraestructure/controllers/create.god.controller';
-import { CreateGodService } from './application/use-cases/create.god.service';
+import { SaveGodService } from './application/use-cases/save.god.service';
 import { GodRepository } from './domain/repositories/god.repository';
 import { MongoDBGodRepository } from './infraestructure/repositories/mongo-db/mongo.db.god.repository';
 
@@ -16,7 +16,7 @@ import { MongoDBGodRepository } from './infraestructure/repositories/mongo-db/mo
   controllers: [GetGodController, CreateGodController],
   providers: [
     GetGodsService,
-    CreateGodService,
+    SaveGodService,
     { provide: GodRepository, useClass: MongoDBGodRepository },
   ],
 })

@@ -4,7 +4,7 @@ import { GodRepository } from '../../domain/repositories/god.repository';
 import { God } from '../../domain/entities/god';
 
 @Injectable()
-export class CreateGodService {
+export class SaveGodService {
   constructor(private readonly godRepository: GodRepository) {}
 
   async createGod(godData: CreateGodDto): Promise<God> {

@@ -1,9 +1,9 @@
 import { GodRepository } from '../../../domain/repositories/god.repository';
 import { God } from '../../../domain/entities/god';
-import { CreateGodService } from '../../../application/use-cases/create.god.service';
+import { SaveGodService } from '../../../application/use-cases/save.god.service';
 
 describe('CreateGodService', () => {
-  let createGodService: CreateGodService;
+  let saveGodService: SaveGodService;
   let godRepository: GodRepository;
 
   beforeEach(() => {
@@ -13,8 +13,8 @@ describe('CreateGodService', () => {
       saveGod: jest.fn(),
     };
 
-    // Create an instance of the CreateGodService with the mock repository
-    createGodService = new CreateGodService(godRepository);
+    // Create an instance of the SaveGodService with the mock repository
+    saveGodService = new SaveGodService(godRepository);
   });
 
   it('should create a new god', async () => {
@@ -30,7 +30,7 @@ describe('CreateGodService', () => {
     jest.spyOn(godRepository, 'saveGod').mockResolvedValue(godData);
 
     // Act
-    const createdGod = await createGodService.createGod(godData);
+    const createdGod = await saveGodService.createGod(godData);
 
     // Assert
     expect(createdGod).toEqual(godData);

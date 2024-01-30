@@ -2,7 +2,7 @@ import { Body, Controller, Get, HttpStatus, Param, Post, Query } from '@nestjs/c
 import { ApiOkResponse, ApiOperation, ApiTags } from '@nestjs/swagger';
 import { SUCCESSFUL_RESPONSE } from '../../../shared/infraestructure/constants/constants';
 import { CreateGodDto } from '../../application/dtos/create.god.dto';
-import { CreateGodService } from '../../application/use-cases/create.god.service';
+import { CreateGodService } from '../../application/use-cases/save.god.service';
 
 @Controller('gods')
 @ApiTags('Pantheon')
