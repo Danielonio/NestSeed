@@ -8,7 +8,9 @@ export class CreateGodService {
   constructor(private readonly godRepository: GodRepository) {}
 
   async createGod(godData: CreateGodDto): Promise<God> {
-    const createdGod = this.godRepository.createGod(godData);
+    const { name, culture, powers } = godData;
+    const god = new God(undefined, name, culture, powers);
+    const createdGod = this.godRepository.saveGod(god);
     return createdGod;
   }
 }

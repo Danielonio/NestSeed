@@ -9,7 +9,7 @@ import { GodS } from './schemas/god.schema';
 export class MongoDBGodRepository implements GodRepository {
   constructor(@InjectModel(GodS.name) private godModel: Model<GodS>) {}
 
-  createGod(god: God) {
+  saveGod(god: God) {
     const createdGod = new this.godModel(god);
     return createdGod.save();
   }
