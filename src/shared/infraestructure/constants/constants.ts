@@ -11,3 +11,5 @@ export enum HTTP_PETITION_METHODS {
   PUT = 'PUT',
   DELETE = 'DELETE',
 }
+
+export const AUTH_JWT_SECRET = 'JWTENVSECRET'; //Should be in the environment variables
