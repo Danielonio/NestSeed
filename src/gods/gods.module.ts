@@ -12,7 +12,10 @@ import { GodRepository } from './domain/repositories/god.repository';
 import { MongoDBGodRepository } from './infraestructure/repositories/mongo-db/mongo.db.god.repository';
 
 @Module({
-  imports: [MongooseModule.forFeature([{ name: GodS.name, schema: GodSchema }])],
+  imports: [
+    MongooseModule.forRoot('mongodb://localhost:27017'),
+    MongooseModule.forFeature([{ name: GodS.name, schema: GodSchema }]),
+  ],
   controllers: [GetGodController, CreateGodController],
   providers: [
     GetGodsService,

@@ -5,6 +5,7 @@ export type User = any;
 
 @Injectable()
 export class FindUserService {
+  // This should be a real method that connects to the DB
   private readonly users = [
     {
       userId: 1,
