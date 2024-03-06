@@ -13,7 +13,7 @@ import { MongoDBGodRepository } from './infraestructure/repositories/mongo-db/mo
 
 @Module({
   imports: [
-    MongooseModule.forRoot('mongodb://localhost:27017'),
+    MongooseModule.forRoot('mongodb://mongodb:27017'),
     MongooseModule.forFeature([{ name: GodS.name, schema: GodSchema }]),
   ],
   controllers: [GetGodController, CreateGodController],

@@ -3,15 +3,17 @@ version: '3.8'
 services:
   node-app:
     build: .
+    command: npm run start:dev
     image: node-app
     environment:
-      - MONGODB_URL=mongodb://mongodb:27017/node-boilerplate
+      - DATABASE_URL=mongodb://mongodb:27017
     ports:
       - '3000:3000'
     depends_on:
       - mongodb
     volumes:
-      - .:/src
+      - .:/usr/src/app
+      - /usr/src/app/node_modules
     networks:
       - node-network
 
